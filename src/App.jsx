@@ -16,7 +16,6 @@ const changeHandler = (data) => {
   setDataObj(data)
 }
 
-console.log(dataObj)
 
   return (
     <div className="App">
@@ -25,7 +24,6 @@ console.log(dataObj)
         formData={dataObj}
         handleChange={changeHandler}
       />
-      <div>Name: {dataObj.name}</div>
     </div>
   )
 }

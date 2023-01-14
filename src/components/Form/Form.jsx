@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useReducer } from "react"
 import Select from "./Select"
 
 // type FormType = {
@@ -12,57 +13,83 @@ import Select from "./Select"
 //     tasks: string,
 // }
 
+function dataReducer(state, action) {
+    switch (action.field) {
+        case 'week' : {
+            return {
+                ...state,
+                week: action.week
+            }
+        }
+        case 'name' : {
+            return {
+                ...state,
+                name: action.name
+            }
+        }
+        case 'rdHours' : {
+            return {
+                ...state,
+                rdHours: action.rdHours
+            }
+        }
+        case 'totalHours' : {
+            return {
+                ...state,
+                totalHours: action.totalHours
+            }
+        }
+        case 'tasks' : {
+            return {
+                ...state,
+                tasks: action.tasks
+            }
+        }
+    }
+}
 
 const Form = (props) => {
-    const [data, setData] = useState(props.formData)
+    // const [data, setData] = useState(props.formData)
+    const [data, dispatch] = useReducer(dataReducer, props.formData)
 
     const changeWeek = (week) => {
-        setData(prevData => {
-            return {
-                ...prevData,
-                week: week.target.value
-            }
+        dispatch({
+            field: 'week',
+            week: week.target.value
         })
     }
 
     const changeName = (name) => {
-        setData(prevData => {
-            return {
-                ...prevData,
-                name: name
-            }
+        dispatch({
+            field: 'name',
+            name: name
         })
     }
 
     const changeRDHours = (hours) => {
-        setData(prevData => {
-            return {
-                ...prevData,
-                rdHours: hours
-            }
+        dispatch({
+            field: 'rdHours',
+            rdHours: hours
         })
     }
 
     const changeTotalHours = (hours) => {
-        setData(prevData => {
-            return {
-                ...prevData,
-                totalHours: hours
-            }
+        dispatch({
+            field: 'totalHours',
+            totalHours: hours
         })
     }
 
     const changeTasks = (task) => {
-        setData(prevData => {
-            return {
-                ...prevData,
-                tasks: task
-            }
+        dispatch({
+            field: 'tasks',
+            tasks: task
         })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(`data is: ${data}`)
         props.handleChange(data)
     }
   
