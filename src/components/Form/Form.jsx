@@ -16,6 +16,15 @@ import Select from "./Select"
 const Form = (props) => {
     const [data, setData] = useState(props.formData)
 
+    const changeWeek = (week) => {
+        setData(prevData => {
+            return {
+                ...prevData,
+                week: week.target.value
+            }
+        })
+    }
+
     const changeName = (name) => {
         setData(prevData => {
             return {
@@ -59,7 +68,7 @@ const Form = (props) => {
   
     return (
         <form onSubmit={handleSubmit}>
-            <Select />
+            <Select handleSelect={changeWeek} />
             <input type='text' placeholder="Name" onChange={e => {changeName(e.target.value)}} />
             <input type='text' placeholder="R&D Hours" onChange={e => {changeRDHours(e.target.value)}} />
             <input type='text' placeholder="Total Hours" onChange={e => {changeTotalHours(e.target.value)}} />

@@ -1,8 +1,12 @@
-type SelectProps = {
-    weekNum: string;
-}
+import { useState } from "react"
 
-const Select = () => {
+// type SelectProps = {
+//     weekNum: string;
+// }
+
+const Select = (props) => {
+    const [selectedWeek, setSelectedWeek] = useState()
+
     const weeks = []
     for (let i = 1; i <= 52; i++) {
         weeks.push(i)
@@ -11,7 +15,7 @@ const Select = () => {
     return (
         <>
             <label htmlFor="weekNum">Week:</label>
-            <select id='weekNum'>
+            <select id='weekNum' onChange={props.handleSelect}>
                 {weeks.map((week) => {
                     return (
                         <option key={week} value={week}>{week}</option>

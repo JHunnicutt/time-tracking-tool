@@ -5,6 +5,7 @@ import Form from './components/Form/Form'
 function App() {
 
   const [dataObj, setDataObj] = useState({
+    week: '',
     name: '',
     rdHours: '',
     totalHours: '',
