@@ -7,7 +7,26 @@
     <title>Time Tracking Tool</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <h1>Time Tracking Tool</h1>
+      <form action="" id="main-form">
+        <label for="week-select">Week</label>
+        <select name="" id="week-select">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <input type="text" id="name" placeholder="Name">
+        <input type="number" id="researchHours" placeholder="R&D Hours">
+        <input type="number" id="totalHours" placeholder="Total Hours">
+        <input type="text" id="tasks" placeholder="Tasks">
+        <button id="formSubmit">Submit</button>
+        <ul id="table-list"></ul>
+      </form>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
+    <script src="./app.ts"></script>
   </body>
 </html>
