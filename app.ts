@@ -9,6 +9,21 @@ const tableList = <HTMLInputElement>document.getElementById('table-list');
 
 form?.addEventListener('submit', (e) => {
     e.preventDefault()
+    const timeToDecimal = (time) => {
+        time = time.split(':')
+        const convertedArr = time.map(el => parseInt(el))
+        const decimal = (convertedArr[1]/6) * 10
+        const result = parseFloat(`${convertedArr[0]}.${decimal<10 ? '0' : ''}${decimal}`)
+        return result
+    }
+
+    const researchTime = timeToDecimal(researchHours.value)
+    const totalTime = timeToDecimal(totalHours.value)
+    const timeDivided = (researchTime/totalTime) * 100
+    const percentage = `${timeDivided.toFixed(2)}%`
+
+    console.log(percentage)
+
     let enteredWeek = week.value
     let enteredName = personName.value
     let enteredResearchHours = researchHours.value
@@ -23,36 +38,42 @@ form?.addEventListener('submit', (e) => {
     let nameCell = document.createElement('td')
     let researchHoursCell = document.createElement('td')
     let totalHoursCell = document.createElement('td')
+    let hoursPercentage = document.createElement('td')
     let tasksCell = document.createElement('td')
 
     let weekHeading = document.createElement('th')
     let nameHeading = document.createElement('th')
     let researchHoursHeading = document.createElement('th')
     let totalHoursHeading = document.createElement('th')
+    let hoursPercentageHeading = document.createElement('th')
     let tasksHeading = document.createElement('th')
 
     weekHeading.textContent = 'Week'
     nameHeading.textContent = 'Name'
     researchHoursHeading.textContent = 'Research Hours'
     totalHoursHeading.textContent = 'Total Hours'
+    hoursPercentageHeading.textContent = 'R&D Hours Percentage'
     tasksHeading.textContent = 'Tasks'
 
     weekCell.textContent = enteredWeek
     nameCell.textContent = enteredName
     researchHoursCell.textContent = enteredResearchHours
     totalHoursCell.textContent = enteredTotalHours
+    hoursPercentage.textContent = percentage
     tasksCell.textContent = enteredTasks
 
     headingRow.appendChild(weekHeading)
     headingRow.appendChild(nameHeading)
     headingRow.appendChild(researchHoursHeading)
     headingRow.appendChild(totalHoursHeading)
+    headingRow.appendChild(hoursPercentageHeading)
     headingRow.appendChild(tasksHeading)
 
     tableRow.appendChild(weekCell)
     tableRow.appendChild(nameCell)
     tableRow.appendChild(researchHoursCell)
     tableRow.appendChild(totalHoursCell)
+    tableRow.appendChild(hoursPercentage)
     tableRow.appendChild(tasksCell)
 
     table.appendChild(headingRow)
@@ -62,7 +83,7 @@ form?.addEventListener('submit', (e) => {
 
     tableList.appendChild(item)
 
-    week.value = ''
+    week.value = '1'
     personName.value = ''
     researchHours.value = ''
     totalHours.value = ''
