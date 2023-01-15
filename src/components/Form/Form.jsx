@@ -2,6 +2,9 @@ import { useState } from "react"
 import { useReducer } from "react"
 import Select from "./Select"
 
+import dataReducer from "./dataReducer"
+import timeToDecimal from "./timeToDecimal"
+
 // type FormType = {
 //     handleChange: (d:string) => void
 // }
@@ -13,40 +16,7 @@ import Select from "./Select"
 //     tasks: string,
 // }
 
-function dataReducer(state, action) {
-    switch (action.field) {
-        case 'week' : {
-            return {
-                ...state,
-                week: action.week
-            }
-        }
-        case 'name' : {
-            return {
-                ...state,
-                name: action.name
-            }
-        }
-        case 'rdHours' : {
-            return {
-                ...state,
-                rdHours: action.rdHours
-            }
-        }
-        case 'totalHours' : {
-            return {
-                ...state,
-                totalHours: action.totalHours
-            }
-        }
-        case 'tasks' : {
-            return {
-                ...state,
-                tasks: action.tasks
-            }
-        }
-    }
-}
+
 
 const Form = (props) => {
     // const [data, setData] = useState(props.formData)
@@ -89,8 +59,10 @@ const Form = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(`data is: ${data}`)
-        props.handleChange(data)
+        const newData = data
+        newData.rdHours = timeToDecimal(data.rdHours)
+        newData.totalHours = timeToDecimal(data.totalHours)
+        props.handleChange(newData)
     }
   
     return (
