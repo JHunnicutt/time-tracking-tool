@@ -18,11 +18,11 @@ form?.addEventListener('submit', (e) => {
     }
 
     const researchTime = timeToDecimal(researchHours.value)
+    const researchTimeDisplay = timeToDecimal(researchHours.value).toString()
     const totalTime = timeToDecimal(totalHours.value)
+    const totalTimeDisplay = timeToDecimal(totalHours.value).toString()
     const timeDivided = (researchTime/totalTime) * 100
     const percentage = `${timeDivided.toFixed(2)}%`
-
-    console.log(percentage)
 
     let enteredWeek = week.value
     let enteredName = personName.value
@@ -57,8 +57,8 @@ form?.addEventListener('submit', (e) => {
 
     weekCell.textContent = enteredWeek
     nameCell.textContent = enteredName
-    researchHoursCell.textContent = enteredResearchHours
-    totalHoursCell.textContent = enteredTotalHours
+    researchHoursCell.textContent = researchTimeDisplay
+    totalHoursCell.textContent = totalTimeDisplay
     hoursPercentage.textContent = percentage
     tasksCell.textContent = enteredTasks
 
