@@ -44,7 +44,7 @@ function App() {
     setTableDisplay(true)
   }
 
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event.target.type)
     if (event.target.type === 'text') {
       switch (event.target.placeholder) {
@@ -73,8 +73,6 @@ function App() {
       dispatch({type: 'week', payload: event.target.value})
     }
   }
-  
-
 
   return (
     <main>
@@ -82,7 +80,7 @@ function App() {
       <Form
         formData={state}
         handleSubmit={(event) => submitHandler(event)}
-        handleTextInput={(event) => changeHandler(event)}
+        handleTextInput={(event) => changeText(event)}
         handleSelectInput={(event) => selectHandler(event)}
       />
       {
