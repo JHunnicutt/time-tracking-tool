@@ -6,6 +6,7 @@ import './App.css'
 import defaultFormData from './components/Form/defaultFormData'
 
 type ACTIONTYPE = 
+  | {type: 'week'; payload: string}
   | {type: 'name'; payload: string}
   | {type: 'rdHours'; payload: string}
   | {type: 'totalHours'; payload: string}
@@ -13,8 +14,11 @@ type ACTIONTYPE =
 
 function reducer(state: typeof defaultFormData, action: ACTIONTYPE) {
   switch (action.type) {
+    case 'week': {
+      return {...state, week: action.payload}
+    }
     case 'name' : {
-      return { ...state, name: action.payload }
+      return {...state, name: action.payload}
     }
     case 'rdHours' : {
       return {...state, rdHours: action.payload}
@@ -41,6 +45,7 @@ function App() {
   }
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.type)
     if (event.target.type === 'text') {
       switch (event.target.placeholder) {
         case 'Name' : {
@@ -62,13 +67,23 @@ function App() {
     }
   }
 
+  const selectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(typeof event.target.value)
+    if (event.target.type === 'select-one') {
+      dispatch({type: 'week', payload: event.target.value})
+    }
+  }
+  
+
+
   return (
     <main>
       <h1>React Time Tracking Tool</h1>
       <Form
         formData={state}
         handleSubmit={(event) => submitHandler(event)}
-        handleChange={(event) => changeHandler(event)}
+        handleTextInput={(event) => changeHandler(event)}
+        handleSelectInput={(event) => selectHandler(event)}
       />
       {
         tableDisplay ?

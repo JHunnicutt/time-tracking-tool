@@ -1,7 +1,7 @@
 import './DataTable.css'
 
 type DataTableProps = {
-    tableData: { name: string, rdHours: string, totalHours: string, tasks: string }
+    tableData: { week: string, name: string, rdHours: string, totalHours: string, tasks: string }
 }
 
 const DataTable = (props: DataTableProps) => {
@@ -9,6 +9,7 @@ const DataTable = (props: DataTableProps) => {
         <table>
             <thead>
                 <tr>
+                    <th>Week</th>
                     <th>Heading</th>
                     <th>R&D Hours</th>
                     <th>Total Hours</th>
@@ -17,6 +18,7 @@ const DataTable = (props: DataTableProps) => {
             </thead>
             <tbody>
                 <tr>
+                    <td>{props.tableData.week}</td>
                     <td>{props.tableData.name}</td>
                     <td>{props.tableData.rdHours}</td>
                     <td>{props.tableData.totalHours}</td>

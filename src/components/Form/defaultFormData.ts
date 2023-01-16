@@ -1,4 +1,5 @@
 const defaultFormData = {
+    week: '',
     name: '',
     rdHours: '',
     totalHours: '',
