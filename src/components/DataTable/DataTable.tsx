@@ -1,3 +1,4 @@
+import timeToDecimal from '../../utils/timeToDecimal'
 import './DataTable.css'
 
 type DataTableProps = {
@@ -5,6 +6,11 @@ type DataTableProps = {
 }
 
 const DataTable = (props: DataTableProps) => {
+
+    const processedRD = timeToDecimal(props.tableData.rdHours)
+    const processedTotal = timeToDecimal(props.tableData.totalHours)
+    const rdPercentage = (processedRD/processedTotal) * 100
+
     return (
         <table>
             <thead>
@@ -13,6 +19,7 @@ const DataTable = (props: DataTableProps) => {
                     <th>Heading</th>
                     <th>R&D Hours</th>
                     <th>Total Hours</th>
+                    <th>R&D Percentage</th>
                     <th>Tasks</th>
                 </tr>
             </thead>
@@ -20,8 +27,9 @@ const DataTable = (props: DataTableProps) => {
                 <tr>
                     <td>{props.tableData.week}</td>
                     <td>{props.tableData.name}</td>
-                    <td>{props.tableData.rdHours}</td>
-                    <td>{props.tableData.totalHours}</td>
+                    <td>{processedRD}</td>
+                    <td>{processedTotal}</td>
+                    <td>{rdPercentage.toFixed(2)}%</td>
                     <td>{props.tableData.tasks}</td>
                 </tr>
             </tbody>

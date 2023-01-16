@@ -3,7 +3,6 @@ import Select from "./Select"
 
 
 type FormProps = {
-    formData: { name: string }
     handleSubmit: (event: React.FormEvent) => void
     handleTextInput: (event: React.ChangeEvent<HTMLInputElement>) => void
     handleSelectInput: (event: React.ChangeEvent<HTMLSelectElement>) => void
